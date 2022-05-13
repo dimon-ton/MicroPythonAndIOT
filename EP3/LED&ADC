@@ -1,0 +1,34 @@
+import machine
+import time
+import pyb
+
+#-----------------LED-------------------
+LED = machine.Pin('Y12')
+
+#LED On
+
+LED.on()
+
+#delay 3 second
+
+time.sleep(3)
+
+#LED Off
+LED.off()
+
+#-----------------ADC-------------------
+
+ADC_PIN = machine.Pin('Y4')
+ADC = pyb.ADC(ADC_PIN)
+print('VALUE: ',ADC.read())
+
+while True:
+    if ADC.read() < 50:
+        LED.off()
+    elif ADC.read() < 100:
+        LED.on()
+        time.sleep(0.5)
+        LED.off()
+        time.sleep(0.5)
+    else:
+        LED.on()
