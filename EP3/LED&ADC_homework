@@ -1,0 +1,50 @@
+
+#-----------------import-------------------
+import machine
+import time
+import pyb
+
+#-----------------read LED-------------------
+LED = machine.Pin('Y12')
+
+
+
+#-----------------read ADC-------------------
+
+ADC_PIN = machine.Pin('Y4')
+ADC = pyb.ADC(ADC_PIN)
+
+
+#-----------------Process-------------------
+
+def blink(spd):
+    LED.on()
+    time.sleep(spd)
+    LED.off()
+    time.sleep(spd)
+
+while True:
+    vol = ADC.read()
+    level = 10
+    print('value: ',vol)
+    
+    if vol < 1*225/level:
+        LED.off()
+    elif vol < 2*225/level:
+        blink(0.5)
+    elif vol < 3*225/level:
+        blink((level-1)*0.5/level)
+    elif vol < 4*225/level:
+        blink((level-2)*0.5/level)
+    elif vol < 5*225/level:
+        blink((level-3)*0.5/level)
+    elif vol < 6*225/level:
+        blink((level-4)*0.5/level)
+    elif vol < 7*225/level:
+        blink((level-5)*0.5/level)
+    elif vol < 8*225/level:
+        blink((level-6)*0.5/level)
+    elif vol < 9*225/level:
+        blink((level-7)*0.5/level)
+    else:
+        blink((level-8)*0.5/level)
