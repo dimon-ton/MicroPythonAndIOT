@@ -1,5 +1,5 @@
 from machine import Pin
- import time
+import time
  led = Pin(14,Pin.OUT)
  led.on()
  led.off()

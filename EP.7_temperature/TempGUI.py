@@ -24,12 +24,33 @@ def runServer():
         print('Data from MicroPython: ',data)
         # data = 'LED:ON' / 'LED:OFF'
         data_split = data.split(':')
+
+        if float(data_split[1]) > 32:
+            img = PhotoImage(file='EP.7_temperature/level3.png')
+            ICON.configure(image=img)
+            ICON.image = img
+            v_status.set('Temperature: {}'.format(data_split[1]))
+        elif float(data_split[1]) > 31.5:
+            img = PhotoImage(file='EP.7_temperature/level2.png')
+            ICON.configure(image=img)
+            ICON.image = img
+            v_status.set('Temperature: {}'.format(data_split[1]))
+        else:
+            img = PhotoImage(file='EP.7_temperature/level1.png')
+            ICON.configure(image=img)
+            ICON.image = img
+            v_status.set('อุณหภูมิเย็นเกินไป')
+
+        '''
         if data_split[1] == 'ON':
             v_status.set('LED Status: {}'.format(data_split[1]))
             L2.configure(fg='green')
         else:
             v_status.set('LED Status: {}'.format(data_split[1]))
             L2.configure(fg='red')
+      
+        '''
+
         client.send('received your messages.'.encode('utf-8'))
         client.close()
 
@@ -47,6 +68,11 @@ v_status = StringVar()
 v_status.set('<<< No Status >>>')
 L2 = Label(GUI, textvariable=v_status, font=FONT)
 L2.pack()
+
+img = PhotoImage(file='EP.7_temperature/level1.png')
+ICON = Label(GUI, image=img)
+ICON.pack()
+
 
 #-------------------------------------Run Server-------------------------------------
 task = threading.Thread(target=runServer)
