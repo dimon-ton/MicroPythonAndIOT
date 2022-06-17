@@ -25,12 +25,12 @@ def runServer():
         # data = 'LED:ON' / 'LED:OFF'
         data_split = data.split(':')
 
-        if float(data_split[1]) > 32:
+        if float(data_split[1]) > 33.2:
             img = PhotoImage(file='EP.7_temperature/level3.png')
             ICON.configure(image=img)
             ICON.image = img
             v_status.set('Temperature: {}'.format(data_split[1]))
-        elif float(data_split[1]) > 31.5:
+        elif float(data_split[1]) > 33.1:
             img = PhotoImage(file='EP.7_temperature/level2.png')
             ICON.configure(image=img)
             ICON.image = img
