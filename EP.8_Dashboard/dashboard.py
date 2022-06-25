@@ -1,6 +1,8 @@
 from tkinter import *
 from turtle import Turtle
 from PIL import Image, ImageTk
+from threading import Thread
+import time
 
 GUI = Tk()
 GUI.geometry('10000x900')
@@ -32,5 +34,29 @@ def DoorOnOff(event):
         canvas.create_line(425, 320, 640, 455, fill='black', width=4, tags='d1')
 
 GUI.bind('<Return>', DoorOnOff)
+
+# fan rotating
+fan = ImageTk.PhotoImage(Image.open('EP.8_Dashboard/fan.png')) 
+canvas.create_image(1063,461,image=fan,tags='img3', anchor=CENTER)
+
+
+
+angle = 0
+
+def run_fan(event=None):
+	# fan = ImageTk.PhotoImage(resize_image('fan-icon.png',100))
+	global angle
+	while True:	
+		if angle != 0:
+			canvas.delete('img3')
+			fan = ImageTk.PhotoImage(image = Image.open('EP.8_Dashboard/fan.png').rotate(angle)) 
+			canvas.create_image(1063,461,image=fan,tags='img3')
+		angle += 20
+		if angle >= 360:
+			angle = 0
+		time.sleep(0.1)
+
+task = Thread(target=run_fan)
+task.start()
 
 GUI.mainloop()
