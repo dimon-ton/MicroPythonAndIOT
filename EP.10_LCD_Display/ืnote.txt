@@ -1,0 +1,4 @@
+LCD Custom Character Generator:
+    https://maxpromer.github.io/LCD-Character-Creator/?fbclid=IwAR3W_gbn2s06sDxWFMsc4VJz9o_dKaJYo1N30uyJY5b8a_O_cj2KKeHrkOg
+Source code:
+    https://github.com/UncleEngineer/Pico/tree/main/LCD?fbclid=IwAR1a8OYZfeRGcAczMyyXtUXoLkULFrlpCHll0a0PcMSFC1eeNHeiLoUCNzE
