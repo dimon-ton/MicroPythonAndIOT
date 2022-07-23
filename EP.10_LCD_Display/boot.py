@@ -19,6 +19,8 @@ lcd = I2cLcd(i2c, 0x27, 2, 16)
 
 #lcd.backlight_off()
 
+#https://maxpromer.github.io/LCD-Character-Creator/?fbclid=IwAR3GXPEDiBYn6HjPDYnimGHOykvo1QOkFQRjbcio96o9CADfeqU-eg76UX0
+
 smile = bytearray([0x00, 0x00, 0x0A, 0x00, 0x11, 0x0E, 0x00,  0x00])
 angry = bytearray([0x00, 0x00, 0x11, 0x0A, 0x00, 0x0E, 0x11, 0x00])
   
